@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  todo-be:
+    container_name: todo-be
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app:Z
+      - /app/node_modules
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/db"
+    networks:
+      - app-shared
+      - db
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14.18
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    env_file:
+      - .env
+    networks:
+      - db
+      - todo-network
+
+volumes:
+  postgres-data:
+    driver: local
+
+networks:
+  app-shared:
+    external: true
+  todo-network:
+    external: true
+  db:
+    driver: bridge

@@ -1,0 +1,22 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDirs": ["src", "test"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "types": ["node", "express"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
