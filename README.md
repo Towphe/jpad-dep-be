@@ -1,21 +1,23 @@
-# Restaurant Finder
+# JPAD Backend Deployment Practice Project
 
-A simple AI-powered restaurant finder from any query. Uses Gemini to translate human query into a JSON command. Leverages FourSquares Places API (*v2025-02-05*) for searching places.
+A pracitce project for deploying backend applications in Vercel.
 
 ## Setup
 
 1. Clone the repository
 
 ```bash
-$ git clone https://github.com/Towphe/restaurant-finder
+$ git clone https://github.com/Towphe/jpad-dep-be
 ```
 
 2. In terminal, o to directory of repository
+
 ```bash
-$ mv restaurant-finder/
+$ mv jpad-dep-be/
 ```
 
 3. Install dependencies
+
 ```bash
 $ npm ci
 ```
@@ -25,8 +27,15 @@ $ npm ci
 Follow the dedicated section on environment variables below.
 
 5. Run application
+
 ```bash
-$ npm run dev
+$ docker compose up --build
+```
+
+6. Instantiate DB
+
+```bash
+$ npx prisma migrate dev
 ```
 
 ## Environment Variables
@@ -37,19 +46,15 @@ Setup the environment variables as follows:
 
 ```bash
 $ cp .env.example .env
-$ 
+$
 ```
 
 2. Fillup `.env` with necessary values.
 
 ```
-PORT=
-NODE_ENV=
-LLM_MODEL=
-GEMINI_API_KEY=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DATABASE=
+DATABASE_URL=
+
 ```
-
-## Limitations
-
-The application only uses v2025-02-05 Place Search API from FourSquares. Other endpoints such as `Get Place Details` and `Get Place Tips` were not used.
-
