@@ -4,7 +4,7 @@ import { AppError } from "../types/error.js";
 import { validateTaskStatus } from "../util/taskStatusValidator.js";
 import { TaskStatus } from "../../prisma/prisma/enums.js";
 import { PrismaClient } from "../../prisma/prisma/client.js";
-import { prisma } from "../lib/prisma.js";
+import prisma from "../lib/prisma.js";
 
 export class TaskService {
   private readonly taskModel: TaskModel;
