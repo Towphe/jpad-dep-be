@@ -53,7 +53,7 @@ export class TaskModel {
     const task = await db.task.create({
       data: {
         title,
-        description,
+        description: description ?? "NO DESCRIPTION",
       },
     });
 
